@@ -17,7 +17,7 @@ const verifyJWT = (req, res, next) => {
         message: "Unauthorized!"
       });
     }
-    req.userId = decoded.id;
+    req.userId = decoded._id;
     next();
   });
 };
