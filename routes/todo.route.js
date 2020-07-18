@@ -72,5 +72,18 @@ todoRoutes.route("/:id").put(function(req, res) {
       });
   });
 });
+todoRoutes.route("/:id").delete(function(req, res) {
+  TodoModel.deleteOne({ _id: req.params.id, todo_userId: req.userId }, function(
+    err
+  ) {
+    if (err) {
+      return res.status(400).json({
+        message: "Todo doesn't exist"
+      });
+    }
+
+    res.status(200).json({ message: "todo deleted" });
+  });
+});
 
 module.exports = todoRoutes;
